@@ -1,0 +1,65 @@
+﻿@model FizzBuzzMVC.Models.FizzBuzz
+
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row mt-3 mb-5">
+            <div class="col col-12 col-lg-4 pe-5">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Fizz Buzz </h1>
+                <!-- description -->
+                <h4 class="lead text-dark">
+                    Fizz Buzz loops from 0 to 100 and any number that is a factor of the given fizz or buzz value will be displayed as fizz or buzz and will have a distinct color. Any number that does not match the conditions will be displayed as a normal number.
+                </h4>
+                <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+                <p>Enter a fizz value and buzz value and press run.</p>
+            </div>
+            <div class="col col-12 col-lg-8 mt-4">
+                <div>
+                    <h5>Enter Values</h5>
+                    <!-- onsubmit="return false" stops the form from refreshing when submitted -->
+                    <form asp-controller="Home" asp-action="FBPage" mathod="post" class="row">
+                        <!-- fizz value -->
+                        <div class="col">
+                            <input asp-for="FizzValue" id="fizzValue" type="number" class="form-control" placeholder="Fizz Value"
+                                   value="@Model.FizzValue" aria-label="Fizz Value">
+                        </div>
+                        <!-- buzz value -->
+                        <div class="col">
+                            <input asp-for="BuzzValue" id="buzzValue" type="number" class="form-control" placeholder="Buzz Value"
+                                   value="@Model.BuzzValue" aria-label="Buzz Value">
+                        </div>
+                        <!-- start button -->
+                        <div class="col-12 d-flex justify-content-end">
+                            <button id="btnSubmit" type="submit" class="btn btn-dark mt-5">Run</button>
+                        </div>
+                    </form>
+                    <h2 class="mt-5 border-bottom border-2">Results</h2>
+                    <div class="table-responsive ">
+                        @if (@Model.Result.Count > 0)
+                        {
+                            <table class="table table-striped table-sm ">
+                                <tbody id="results">
+                                    <!-- RESULTS GO HERE -->
+                                    @*use this to change the number of rows on the table
+                                        make sure to change the number of <td> too*@
+                                    @for (int i = 0; i < Model.Result.Count(); i += 5)
+                                    {
+                                        <tr>
+                                            <td>@Model.Result[i]</td>
+                                            <td>@Model.Result[i + 1]</td>
+                                            <td>@Model.Result[i + 2]</td>
+                                            <td>@Model.Result[i + 3]</td>
+                                            <td>@Model.Result[i + 4]</td>
+
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
